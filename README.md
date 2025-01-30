@@ -1,0 +1,1 @@
+Repositório da equipe 2 para o trabalho de IAAD.
