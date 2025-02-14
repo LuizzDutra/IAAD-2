@@ -1,24 +1,31 @@
 import streamlit as st
-import mysql.connector
+import sqlalchemy as db
+from sqlalchemy.dialects import mysql
+from urllib.parse import quote
 
 st.set_page_config(
     page_title="IAAD-Equipe2",
     layout="centered"
 )
-st.header("Hello, world!")
-
-my_db = mysql.connector.connect(
-    host=st.secrets["host"],
-    port=st.secrets["port"],
-    user=st.secrets["user"],
-    password=st.secrets["password"]
-)
-
-cursor = my_db.cursor()
+st.header("IAAD Equipe 2")
 
 
-cursor.execute("SHOW DATABASES")
+#Conecta ao mysql e cria o db, dando drop caso necessário
+engine = db.create_engine(f"mysql+mysqlconnector://{st.secrets['user']}:{quote(st.secrets['password'])}@{st.secrets['host']}:{st.secrets['port']}")
 
-for i in cursor:
-    st.text(i)
+with open("database/schema_normalizado.sql", "r", encoding="utf-8") as file:
+        script = file.read()
 
+with engine.connect() as conn:
+    statements = [stmt.strip() for stmt in script.split(';') if stmt.strip()]
+    for stmt in statements:
+        print(stmt)
+        conn.execute(db.text(stmt))
+    conn.commit()
+
+st.write("Databases")
+st.write(db.inspect(engine).get_schema_names())
+
+st.write("Programadores")
+with engine.connect() as conn:
+    st.write(conn.execute(db.text("SELECT * FROM Programador")).fetchall())
