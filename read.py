@@ -18,9 +18,7 @@ def get_table(table_name):
 
 
 def get_consulta(consulta: str):
-    st.table(controller.make_query("""SELECT NOME_STARTUP, NOME_PROGRAMADOR FROM startup NATURAL LEFT JOIN programador_startup NATURAL LEFT JOIN Programador
-                                   WHERE NOME_PROGRAMADOR IS NOT NULL
-                                    GROUP BY NOME_STARTUP""").fetchall())
+    st.table(controller.get_table("qnt_programador_startup"))
 
 def get_read_page():
     st.header("Tabelas")
