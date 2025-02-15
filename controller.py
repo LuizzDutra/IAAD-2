@@ -21,9 +21,21 @@ def create_schema():
 def get_schemas():
     return db.inspect(engine).get_schema_names()
 
+def get_tables_names():
+    with engine.connect() as conn:
+        conn.execute(db.text("USE db_equipe2"))
+        query = conn.execute(db.text("SHOW TABLES")).fetchall()
+        return [t[0] for t in query]
+
 def get_tables():
     with engine.connect() as conn:
-        return conn.execute(db.text("SHOW TABLES")).fetchall()
+        tables = get_tables_names()
+        return [(conn.execute(db.text(f"SELECT * FROM {t}")), t) for t in tables]
+
+def get_table(table_name):
+    with engine.connect() as conn:
+        return conn.execute(db.text(f"SELECT * FROM {table_name}"))
+
 
 def get_programadores():
      with engine.connect() as conn:
