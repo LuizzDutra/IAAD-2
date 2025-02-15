@@ -66,8 +66,8 @@ INSERT INTO Programador Values
     (30004, 'Felipe Santos', 'M', '1976/11/25'),
     (30006, 'Fernando Alves', 'M', '1998/07/07'),
     (30008, 'Lucas Lima', 'M', '2000/10/09'),
-    (30011, 'Alice Lins', 'F', '2000/10/09'),
-    !-- (30009, 'Leonardo Ramos', 'M', NULL)
+    (30011, 'Alice Lins', 'F', '2000/10/09')
+    -- (30009, 'Leonardo Ramos', 'M', NULL)
 
 ;
 
