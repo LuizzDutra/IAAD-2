@@ -27,14 +27,14 @@ def get_tables_names():
         query = conn.execute(db.text("SHOW TABLES")).fetchall()
         return [t[0] for t in query]
 
-def get_tables():
+def get_tables() -> dict:
     with engine.connect() as conn:
         tables = get_tables_names()
-        return [(conn.execute(db.text(f"SELECT * FROM {t}")), t) for t in tables]
+        return {t : get_table(t) for t in tables}
 
 def get_table(table_name):
     with engine.connect() as conn:
-        return conn.execute(db.text(f"SELECT * FROM {table_name}"))
+        return conn.execute(db.text(f"SELECT * FROM {table_name}")).fetchall()
 
 
 def get_programadores():
