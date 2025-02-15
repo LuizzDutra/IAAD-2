@@ -30,11 +30,11 @@ def get_tables_names():
 def get_tables():
     with engine.connect() as conn:
         tables = get_tables_names()
-        return [(conn.execute(db.text(f"SELECT * FROM {t}")), t) for t in tables]
+        return [(get_table(t), t) for t in tables]
 
 def get_table(table_name):
     with engine.connect() as conn:
-        return conn.execute(db.text(f"SELECT * FROM {table_name}"))
+        return conn.execute(db.text(f"SELECT * FROM {table_name}")).fetchall()
 
 
 def get_programadores():
