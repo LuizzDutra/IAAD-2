@@ -19,3 +19,6 @@ st.table(controller.get_tables())
 
 st.write("Programadores")
 st.table(controller.make_query('SELECT * FROM Programador'))
+
+st.write("Linguagem")
+st.table(controller.make_query('SELECT * FROM Linguagem'))
