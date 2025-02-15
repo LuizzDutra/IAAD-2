@@ -1,5 +1,5 @@
 import streamlit as st
-
+import read
 import controller
 
 st.set_page_config(
@@ -8,17 +8,17 @@ st.set_page_config(
 )
 st.header("IAAD Equipe 2")
 
+main_tab, read_tab = st.tabs(["Main", "Read"])
 
 controller.create_schema()
 
-st.write("Databases")
-st.write(controller.get_schemas())
 
-st.write("Tables")
-st.table(controller.get_tables())
+with main_tab:
+    st.write("Databases")
+    st.write(controller.get_schemas())
 
-st.write("Programadores")
-st.table(controller.make_query('SELECT * FROM Programador'))
+    st.write("Tables")
+    st.table(controller.get_tables_names())
 
-st.write("Linguagem")
-st.table(controller.make_query('SELECT * FROM Linguagem'))
+with read_tab:
+    read.get_read_page()
