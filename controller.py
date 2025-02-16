@@ -6,6 +6,8 @@ from urllib.parse import quote
 
 #Conecta ao mysql e cria o db, dando drop caso necessário
 engine = db.create_engine(f"mysql+mysqlconnector://{st.secrets['user']}:{quote(st.secrets['password'])}@{st.secrets['host']}:{st.secrets['port']}")
+with engine.connect() as conn:
+    conn.execute(db.text("USE db_equipe2"))
 
 def create_schema():
     with open("database/schema_normalizado.sql", "r", encoding="utf-8") as file:
@@ -23,23 +25,25 @@ def get_schemas():
 
 def get_tables_names():
     with engine.connect() as conn:
-        conn.execute(db.text("USE db_equipe2"))
-        query = conn.execute(db.text("SHOW TABLES")).fetchall()
+        #conn.execute(db.text("USE db_equipe2"))
+        query = conn.execute(db.text("SHOW FULL TABLES WHERE TABLE_TYPE = 'BASE TABLE'")).fetchall()
         return [t[0] for t in query]
 
 def get_tables() -> dict:
-    with engine.connect() as conn:
-        tables = get_tables_names()
-        return {t : get_table(t) for t in tables}
+    tables = get_tables_names()
+    return {t : get_table(t) for t in tables}
 
 def get_table(table_name):
     with engine.connect() as conn:
         return conn.execute(db.text(f"SELECT * FROM {table_name}")).fetchall()
 
 
-def get_programadores():
-     with engine.connect() as conn:
-        return conn.execute(db.text("SELECT * FROM Programador")).fetchall()
+def get_views_names():
+    with engine.connect() as conn:
+        #conn.execute(db.text("USE db_equipe2"))
+        query = conn.execute(db.text("SHOW FULL TABLES WHERE TABLE_TYPE = 'VIEW'")).fetchall()
+        return [t[0] for t in query]
+
 
 def make_query(query: str):
     with engine.connect() as conn:

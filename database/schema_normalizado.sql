@@ -136,10 +136,14 @@ INSERT INTO Programador_Dependente (ID_PROGRAMADOR, ID_DEPENDENTE) VALUES
 	(30006, 40008),
 	(30009, 40009);
 
-CREATE VIEW qnt_programador_startup AS
+CREATE VIEW quantidade_programador_por_startup AS
 SELECT NOME_STARTUP, COUNT(ID_PROGRAMADOR) as Programadores
 FROM startup NATURAL LEFT JOIN programador_startup
-WHERE ID_PROGRAMADOR IS NOT NULL
 GROUP BY NOME_STARTUP;
+
+CREATE VIEW listar_dependentes_programador AS
+SELECT NOME_PROGRAMADOR as Programador, GROUP_CONCAT(" ", NOME_DEPENDENTE) as Dependentes
+FROM Programador NATURAL LEFT JOIN Programador_Dependente NATURAL LEFT JOIN Dependente
+GROUP BY NOME_PROGRAMADOR;
 
 COMMIT;
