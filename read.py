@@ -1,5 +1,6 @@
 import streamlit as st
 import controller
+import altair as alt
 
 def get_all_tables():
     tables = controller.get_tables()
@@ -23,7 +24,7 @@ def get_consulta(consulta: str):
     if consulta == "Todas":
         get_all_consultas()
     elif consulta != "Nenhuma":
-        st.table(controller.get_table(consulta))
+        get_table(consulta)
 
 def get_read_page():
     st.header("Tabelas")
