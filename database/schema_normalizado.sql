@@ -58,17 +58,17 @@ CREATE TABLE Programador_Dependente(
 
 
 INSERT INTO Programador Values
-    (30001, 'João Pedro', 'M', '1993/06/23'),
-    (30005, 'Ana Cristina', 'F', '1968/02/19'),
-    (30002, 'Paula Silva', 'F', '1986/01/10'),
-    (30007, 'Laura Marques', 'F', '1987/10/04'),
-    (30003, 'Renata Vieira', 'F', '1991/07/05'),
-    (30004, 'Felipe Santos', 'M', '1976/11/25'),
-    (30006, 'Fernando Alves', 'M', '1998/07/07'),
-    (30008, 'Lucas Lima', 'M', '2000/10/09'),
-    (30011, 'Alice Lins', 'F', '2000/10/09'),
-    (30009, 'Camila Macedo', 'F', '1995/07/03')
-    -- (30010, 'Leonardo Ramos', 'M', NULL)
+    (30001, 'João Pedro', 'M', '1993-06-23'),
+    (30005, 'Ana Cristina', 'F', '1968-02-19'),
+    (30002, 'Paula Silva', 'F', '1986-01-10'),
+    (30007, 'Laura Marques', 'F', '1987-10-04'),
+    (30003, 'Renata Vieira', 'F', '1991-07-05'),
+    (30004, 'Felipe Santos', 'M', '1976-11-25'),
+    (30006, 'Fernando Alves', 'M', '1998-07-07'),
+    (30008, 'Lucas Lima', 'M', '2000-10-09'),
+    (30011, 'Alice Lins', 'F', '2000-10-09'),
+    (30009, 'Camila Macedo', 'F', '1995-07-03')
+    
 
 ;
 
@@ -101,15 +101,15 @@ INSERT INTO Programador_Startup VALUES
 ;
 
 INSERT INTO Dependente (ID_DEPENDENTE, NOME_DEPENDENTE, PARENTESCO_DEPENDENTE, DATA_NASC_DEPENDENTE) VALUES
-    (40001, 'André Sousa', 'Filho', '2020/05/15'),
-	(40002, 'Luciana Silva', 'Filha', '2018/07/26'),
-	(40003, 'Elisa Silva', 'Filha', '2020/01/06'),
-	(40004, 'Breno Silva', 'Esposo', '1984/05/21'),
-	(40005, 'Daniel Marques', 'Filho', '2014/06/06'),
-	(40006, 'Rafaela Santos', 'Esposa', '1980/02/12'),
-	(40007, 'Marcos Martins', 'Filho', '2008/03/26'),
-	(40008, 'Laís Meneses', 'Esposa', '1990/11/09'),
-	(40009, 'Lidiane Macedo', 'Filha', '2015/04/14');
+    (40001, 'André Sousa', 'Filho', '2020-05-15'),
+	(40002, 'Luciana Silva', 'Filha', '2018-07-26'),
+	(40003, 'Elisa Silva', 'Filha', '2020-01-06'),
+	(40004, 'Breno Silva', 'Esposo', '1984-05-21'),
+	(40005, 'Daniel Marques', 'Filho', '2014-06-06'),
+	(40006, 'Rafaela Santos', 'Esposa', '1980-02-12'),
+	(40007, 'Marcos Martins', 'Filho', '2008-03-26'),
+	(40008, 'Laís Meneses', 'Esposa', '1990-11-09'),
+	(40009, 'Lidiane Macedo', 'Filha', '2015-04-14');
 
 INSERT INTO Programador_Linguagem (ID_PROGRAMADOR, ID_LINGUAGEM) VALUES
     (30001, 20001),
@@ -122,7 +122,6 @@ INSERT INTO Programador_Linguagem (ID_PROGRAMADOR, ID_LINGUAGEM) VALUES
     (30004, 20005),
     (30009, 20004),
     (30009, 20007);
-    -- (30010, 20007)
 
 
 INSERT INTO Programador_Dependente (ID_PROGRAMADOR, ID_DEPENDENTE) VALUES
@@ -141,17 +140,6 @@ SELECT NOME_STARTUP, COUNT(ID_PROGRAMADOR) as Programadores
 FROM startup NATURAL LEFT JOIN programador_startup
 WHERE ID_PROGRAMADOR IS NOT NULL
 GROUP BY NOME_STARTUP;
-
-INSERT INTO Dependente (ID_DEPENDENTE, NOME_DEPENDENTE, PARENTESCO_DEPENDENTE, DATA_NASC_DEPENDENTE) VALUES 
-(40001, 'André Sousa', 'Filho', '2020/05/15'),
-(40002, 'Luciana Silva', 'Filha', '2018/07/26'),
-(40003, 'Elisa Silva', 'filha', '2020/01/06'),
-(40004, 'Breno Silva', 'Esposo', '1984/05/21'),
-(40005, 'Daniel Marques', 'Filho', '2014/06/06'),
-(40006, 'Rafaela Santos', 'Esposa', '1980/02/12'),
-(40007, 'Marcos Martins', 'Filho', '2008/03/26'),
-(40008, 'Lais Meneses', 'Esposa', '1990/11/09'),
-(40009, 'Lidiane Macedo', 'Filha', '2015/04/14');
 
 
 INSERT INTO Programador_Dependente (ID_PROGRAMADOR, ID_DEPENDENTE) VALUES
@@ -176,18 +164,6 @@ INSERT INTO Programador_Linguagem (ID_PROGRAMADOR, ID_LINGUAGEM) VALUES
 (30004, 20005),
 (30009, 20004),
 (30009, 20007);
---(300010, 20004),
-
-
-INSERT INTO Programador_Startup (ID_STARTUP, ID_PROGRAMADOR) VALUES
-(10001, 30001),
-(10001, 30005),
-(10002, 30002),
-(10002, 30007),
-(10003, 30003),
-(10004, 30004),
-(10004, 30006),
-(10007, 30011);
 
 
 COMMIT;
