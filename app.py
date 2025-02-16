@@ -10,7 +10,9 @@ st.header("IAAD Equipe 2")
 
 main_tab, read_tab = st.tabs(["Main", "Read"])
 
-controller.create_schema()
+@st.cache_data
+def init_schema():
+    controller.create_schema()
 
 
 with main_tab:
@@ -19,6 +21,10 @@ with main_tab:
 
     st.write("Tables")
     st.table(controller.get_tables_names())
+
+    if st.button("Resetar schema"):
+        init_schema.clear()
+        init_schema()
 
 with read_tab:
     read.get_read_page()
