@@ -17,27 +17,23 @@ def inputs_table(table_name:str):
     inputs_length = len(columns)
     dict_columns = {}
     for element in columns:
-        dict_columns[element] = None
+        dict_columns[element] = st.text_input(label=element)
 
-    for column in columns:
-        dict_columns[column] = st.text_input(label=column)
-    
     return dict_columns
 
 
 def fetch_columns(table_name:str):
-    list = []
-    query = controller.make_query(f"""
-        SELECT COLUMN_NAME 
-        FROM INFORMATION_SCHEMA.COLUMNS 
-        WHERE TABLE_SCHEMA = 'db_equipe2' 
-        AND TABLE_NAME = '{table_name}'
-    """).fetchall()
+    #list = []
+    #query = controller.make_query(f"""
+    #    SELECT COLUMN_NAME 
+    #    FROM INFORMATION_SCHEMA.COLUMNS 
+    #    WHERE TABLE_SCHEMA = 'db_equipe2' 
+    #    AND TABLE_NAME = '{table_name}'
+    #""").fetchall()
+    columns = list(controller.get_table_columns(table_name))
 
-    for element in query: 
-        list.append(element[0])
 
-    return list
+    return columns
 
 def create_execute(data:dict,table):
     list = []
