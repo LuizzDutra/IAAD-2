@@ -38,9 +38,11 @@ def fetch_columns(table_name:str):
 def create_execute(data:dict,table):
     list = []
     for key, value in data.items():
-        if value == "":
+        if value == "" and len(key) >= 2 and key[:2] == "ID":
+            value = 0
+        elif value == "":
             return
-        if value.isdigit():
+        elif value.isdigit():
             value = int(value)
         list.append(value)
     result = tuple(i for i in list)
