@@ -1,5 +1,6 @@
 import streamlit as st
 import read
+import create
 import controller
 
 st.set_page_config(
@@ -8,7 +9,7 @@ st.set_page_config(
 )
 st.header("IAAD Equipe 2")
 
-main_tab, read_tab = st.tabs(["Main", "Read"])
+main_tab, read_tab, create_tab = st.tabs(["Main", "Read","Create"])
 
 @st.cache_data
 def init_schema():
@@ -28,3 +29,6 @@ with main_tab:
 
 with read_tab:
     read.get_read_page()
+
+with create_tab:
+    create.get_create_page()
