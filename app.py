@@ -9,7 +9,7 @@ st.set_page_config(
 )
 st.header("IAAD Equipe 2")
 
-main_tab, read_tab, create_tab = st.tabs(["Main", "Read","Create"])
+main_tab, create_tab, read_tab,  = st.tabs(["Main", "Create","Read"])
 
 @st.cache_data
 def init_schema():
