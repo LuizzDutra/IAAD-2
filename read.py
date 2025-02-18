@@ -29,7 +29,7 @@ def get_consulta(consulta: str):
 def get_read_page():
     st.header("Tabelas")
     select = st.selectbox("Tabela:", options=["Nenhuma", "Todas"] + controller.get_tables_names(), label_visibility="hidden")
-    get_table(select)
+    get_table(select) 
     st.header("Consultas")
     select_consulta = st.selectbox("Consulta:", options=["Nenhuma", "Todas"] + controller.get_views_names(), label_visibility="hidden")
     get_consulta(select_consulta)

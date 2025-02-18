@@ -36,6 +36,10 @@ def get_tables() -> dict:
 def get_table(table_name):
     with engine.connect() as conn:
         return conn.execute(db.text(f"SELECT * FROM {table_name}")).fetchall()
+    
+def get_table_columns(table_name):
+    with engine.connect() as conn:
+        return conn.execute(db.text(f"SELECT * FROM {table_name}")).keys()
 
 
 def get_views_names():
@@ -47,5 +51,7 @@ def get_views_names():
 
 def make_query(query: str):
     with engine.connect() as conn:
-        return conn.execute(db.text(query))
-    
+        conn.execute(db.text("USE db_equipe2"))
+        ret = conn.execute(db.text(query))
+        conn.commit()
+    return ret
