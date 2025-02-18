@@ -48,5 +48,6 @@ def get_views_names():
 def make_query(query: str):
     with engine.connect() as conn:
         conn.execute(db.text("USE db_equipe2"))
-        return conn.execute(db.text(query))
-    
+        ret = conn.execute(db.text(query))
+        conn.commit()
+    return ret

@@ -27,8 +27,11 @@ with main_tab:
         init_schema.clear()
         init_schema()
 
-with read_tab:
-    read.get_read_page()
 
 with create_tab:
     create.get_create_page()
+
+with read_tab:
+    read.get_read_page()
+
+
