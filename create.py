@@ -2,6 +2,7 @@ import streamlit as st
 import controller
 import sqlalchemy as db
 from sqlalchemy.dialects import mysql
+from sqlalchemy.exc import SQLAlchemyError
 from urllib.parse import quote
 
 def get_create_page():
@@ -52,6 +53,8 @@ def create_execute(data:dict,table):
         queryStr = f"INSERT INTO {table}({keyStr}) VALUES{result}"
         st.write(queryStr)
         controller.make_query(queryStr)
+    except SQLAlchemyError as e:
+        st.text(e.orig)
     except Exception as e:
         st.text(e)
         return
