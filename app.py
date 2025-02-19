@@ -32,8 +32,8 @@ with main_tab:
 with create_tab:
     create.get_create_page()
 
-with read_tab:
-    read.get_read_page()
-
 with delete_tab:
     delete.get_delete_page()
+
+with read_tab:
+    read.get_read_page()
