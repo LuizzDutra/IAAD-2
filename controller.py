@@ -2,6 +2,7 @@ import streamlit as st
 import sqlalchemy as db
 from sqlalchemy.dialects import mysql
 from urllib.parse import quote
+import sqlparse
 
 
 #Conecta ao mysql e cria o db, dando drop caso necessário
@@ -14,7 +15,9 @@ def create_schema():
             script = file.read()
 
     with engine.connect() as conn:
-        statements = [stmt.strip() for stmt in script.split(';') if stmt.strip()]
+        #statements = [stmt.strip() for stmt in script.split(';') if stmt.strip()]
+        statements = sqlparse.split(script)
+        st.write(statements)
         for stmt in statements:
             conn.execute(db.text(stmt))
         conn.commit()

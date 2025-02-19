@@ -153,4 +153,33 @@ FROM Programador_Linguagem NATURAL LEFT JOIN Linguagem
 GROUP BY NOME_LINGUAGEM
 ORDER BY quantidade DESC;
 
+
+DROP TRIGGER IF EXISTS idade_minima;
+DELIMITER $$
+CREATE TRIGGER idade_minima BEFORE INSERT ON Programador
+FOR EACH ROW 
+BEGIN
+    DECLARE idade INT;
+    SET idade = TIMESTAMPDIFF(YEAR, NEW.DATA_NASC_PROGRAMADOR, CURDATE());
+    IF idade < 18 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Não é possível cadastrar menores de 18 anos.';
+    END IF;
+END$$
+
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS idade_minima_update;
+DELIMITER $$
+CREATE TRIGGER idade_minima_update BEFORE UPDATE ON Programador
+FOR EACH ROW 
+BEGIN
+    DECLARE idade INT;
+    SET idade = TIMESTAMPDIFF(YEAR, NEW.DATA_NASC_PROGRAMADOR, CURDATE());
+    IF idade < 18 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Não é possível cadastrar menores de 18 anos.';
+    END IF;
+END$$
+
+DELIMITER ;
+
 COMMIT;
