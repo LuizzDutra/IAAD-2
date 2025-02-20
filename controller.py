@@ -58,3 +58,23 @@ def make_query(query: str):
         ret = conn.execute(db.text(query))
         conn.commit()
     return ret
+
+
+def update_query(table_name, primary_key, primary_value, updates):
+    if not updates:
+        return "Nenhuma alteração feita."
+
+    # Monta a query dinamicamente
+    update_query = f"UPDATE {table_name} SET "
+    update_query += ", ".join([f"{col} = :{col}" for col in updates.keys()])
+    update_query += f" WHERE {primary_key} = :primary_value"
+
+    try:
+        with engine.connect() as conn:
+            conn.execute(db.text(update_query), {"primary_value": primary_value, **updates})
+            conn.commit()
+        return "Registro atualizado com sucesso!"
+    except Exception as e:
+        return f"Erro ao atualizar o registro: {e}"
+
+    

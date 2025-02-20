@@ -3,6 +3,7 @@ import read
 import create
 import delete
 import controller
+import update
 
 st.set_page_config(
     page_title="IAAD-Equipe2",
@@ -10,7 +11,8 @@ st.set_page_config(
 )
 st.header("IAAD Equipe 2")
 
-main_tab, create_tab, delete_tab, read_tab,  = st.tabs(["Main", "Create","Delete","Read"])
+main_tab, create_tab, read_tab, update_tab  = st.tabs(["Main", "Create","Read", "Update", "Delete"])
+
 
 @st.cache_data
 def init_schema():
@@ -35,5 +37,10 @@ with create_tab:
 with delete_tab:
     delete.get_delete_page()
 
+with update_tab:
+    update.get_update_page() 
+    
 with read_tab:
     read.get_read_page()
+
+
