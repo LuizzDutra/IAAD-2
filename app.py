@@ -11,7 +11,7 @@ st.set_page_config(
 )
 st.header("IAAD Equipe 2")
 
-main_tab, create_tab, read_tab, update_tab  = st.tabs(["Main", "Create","Read", "Update", "Delete"])
+main_tab, create_tab, read_tab, update_tab, delete_tab  = st.tabs(["Main", "Create","Read", "Update", "Delete"])
 
 
 @st.cache_data
