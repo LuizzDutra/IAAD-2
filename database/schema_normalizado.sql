@@ -67,7 +67,7 @@ INSERT INTO Programador Values
     (30006, 'Fernando Alves', 'M', '1998/07/07'),
     (30008, 'Lucas Lima', 'M', '2000/10/09'),
     (30011, 'Alice Lins', 'F', '2000/10/09'),
-    (30009, 'Camila Macedo', 'F', '1995/07/03')
+    (30009, 'Camila Macedo', 'F', '1995/07/03'),
     (30010, 'Leonardo Ramos', 'M', '2005/03/05')
 
 ;
@@ -121,8 +121,8 @@ INSERT INTO Programador_Linguagem (ID_PROGRAMADOR, ID_LINGUAGEM) VALUES
     (30003, 20005),
     (30004, 20005),
     (30009, 20004),
-    (30009, 20007);
-    (30010, 20007)
+    (30009, 20007),
+    (30010, 20007);
 
 
 INSERT INTO Programador_Dependente (ID_PROGRAMADOR, ID_DEPENDENTE) VALUES
