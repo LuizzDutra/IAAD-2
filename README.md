@@ -16,7 +16,10 @@ Instruções para utilizar o repositório:
         host = "xxxx"
         port = xxxx
         user = "xxxx"
-        password = "xxxxxxx
+        password = "xxxxxxx"
         ```
 
 5. Inicie o app com ```python -m streamlit run app.py```
+
+Observação: Caso o trigger não funcione, limpe o cache do streamlit ou aperte em resetar esquema. 
+
